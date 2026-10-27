@@ -34,7 +34,7 @@ export function PointsCalculator({ data, update }: Props) {
     update('selfOwnedProperties', data.selfOwnedProperties.filter((_, i) => i !== index));
   };
 
-  // 🎯 完整保留的眷口處理邏輯
+  // 🎯 眷口動態處理邏輯
   const addFamilyMember = () => {
     update('familyMembers', [
       ...data.familyMembers,
@@ -61,7 +61,7 @@ export function PointsCalculator({ data, update }: Props) {
         icon={<Calculator size={20} />}
       >
         <div className="space-y-5">
-          {/* 服務年資區塊 */}
+          {/* 1. 服務年資區塊 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-3">服務年資</h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -96,7 +96,7 @@ export function PointsCalculator({ data, update }: Props) {
             </div>
           </div>
 
-          {/* 職級區塊 */}
+          {/* 2. 職級區塊 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-3">職級</h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -121,14 +121,14 @@ export function PointsCalculator({ data, update }: Props) {
             </div>
           </div>
 
-          {/* 🎯 眷口區塊：已成功搬移至 A 區塊「職級」的下方 */}
+          {/* 3. 眷口區塊：已成功移至職級正下方，包含完整的新增功能 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-2">眷口</h3>
             <InfoBox>
               積點計算標準：與申請人同住之配偶、未成年子女（明年1月1日未滿18歲）、身心障礙賴其扶養之已成年子女或申請人（或配偶，以一方為限）之父母為眷口，每口四點。
             </InfoBox>
 
-            {/* 眷口動態輸入表單 */}
+            {/* 眷口動態清單輸入欄位 */}
             <div className="mt-4 space-y-3">
               {data.familyMembers.map((member, index) => (
                 <div
@@ -167,6 +167,7 @@ export function PointsCalculator({ data, update }: Props) {
                 </div>
               ))}
 
+              {/* 🎯 新增眷口按鈕 */}
               <button
                 onClick={addFamilyMember}
                 className="flex items-center gap-2 rounded-lg border-2 border-dashed border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-600 transition hover:border-teal-400 hover:bg-teal-50 hover:text-teal-600 w-full justify-center"
@@ -176,7 +177,7 @@ export function PointsCalculator({ data, update }: Props) {
               </button>
             </div>
 
-            {/* 眷口結算分數顯示 */}
+            {/* 眷口分數總結 */}
             <div className="mt-4 pt-4 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
               <p className="text-xs text-slate-500">
                 目前有效眷口數：
@@ -242,8 +243,8 @@ export function PointsCalculator({ data, update }: Props) {
                   </div>
                 ))}
                 <button
-                  onClick={addProperty}
-                  className="flex items-center gap-2 rounded-lg border-2 border-dashed border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-600 transition hover:border-teal-400 hover:bg-teal-50 hover:text-teal-600"
+onClick={addProperty}
+className="flex items-center gap-2 rounded-lg border-2 border-dashed border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-600 transition hover:border-teal-400 hover:bg-teal-50 hover:text-teal-600"
 >
 
 新增自有住宅
@@ -261,9 +262,5 @@ onChange={(v) => update('previousBorrowCount', v)}
 min={0}
 hint="至統一辦理借用申請發布日止"
 />
-
-
-
-
 );
 }
