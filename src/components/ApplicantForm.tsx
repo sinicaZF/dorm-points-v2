@@ -13,7 +13,6 @@ const relationships = [
   { value: '父', label: '父' },
   { value: '母', label: '母' },
   { value: '子女', label: '子女' },
-  { value: '子女', label: '子女' },
 ];
 
 export function ApplicantForm({ data, update }: Props) {
@@ -117,25 +116,28 @@ export function ApplicantForm({ data, update }: Props) {
         </div>
       </Section>
 
+      {/* 🎯 配偶基本資料區塊：當婚姻狀況為「已婚」時自動展開 */}
       {data.applicant.maritalStatus === 'married' && (
         <Section
-          title="配偶資料"
-          subtitle="若已婚，請填寫配偶資訊"
+          title="配偶基本資料"
+          subtitle="填寫配偶資訊以供年資與職級合併計點審查"
           icon={<User size={20} />}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <TextField
-              label="配偶姓名"
+              label="姓名"
               value={data.spouse.name}
               onChange={(e) => updateSpouse('name', e.target.value)}
+              placeholder="請輸入配偶姓名"
             />
             <TextField
-              label="配偶身分證字號"
+              label="身分證字號"
               value={data.spouse.idNumber}
               onChange={(e) => updateSpouse('idNumber', e.target.value)}
+              placeholder="請輸入配偶身分證字號"
             />
             <TextField
-              label="配偶生日"
+              label="生日"
               type="date"
               value={data.spouse.birthday}
               onChange={(e) => updateSpouse('birthday', e.target.value)}
@@ -144,9 +146,10 @@ export function ApplicantForm({ data, update }: Props) {
               label="職業（服務單位）"
               value={data.spouse.occupation}
               onChange={(e) => updateSpouse('occupation', e.target.value)}
+              placeholder="如：中央研究院○○所"
             />
           </div>
-          <div className="mt-4">
+          <div className="mt-4 pt-4 border-t border-slate-100">
             <CheckboxField
               label="夫婦同在本院任職，年資與職級得合併計點"
               checked={data.isBothSpousesInAcademia}
