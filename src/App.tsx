@@ -14,10 +14,10 @@ export default function App() {
   const [isExporting, setIsExporting] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
-  // 🎯 新增狀態：控制選取的房型 ('3-4' 或 '2')
+  // 新增狀態：控制選取的房型 ('3-4' 或 '2')
   const [roomType, setRoomType] = useState<'3-4' | '2'>('3-4');
 
-  // 🎯 核心修改：取得當前西元年並轉換為民國年（例如 2026 - 1911 = 115）
+  // 核心修改：取得當前西元年並轉換為民國年（例如 2026 - 1911 = 115）
   const currentTaiwanYear = useMemo(() => new Date().getFullYear() - 1911, []);
 
   const breakdown = useMemo(() => calculatePoints(data), [data]);
@@ -29,7 +29,6 @@ export default function App() {
   const handleExport = async () => {
     setIsExporting(true);
     try {
-      // 💡 如果 pdf.ts 支援帶入房型參數，可以將 roomType 傳入
       await exportToPDF(data, breakdown);
     } catch (err) {
       console.error('PDF export failed', err);
@@ -57,7 +56,7 @@ export default function App() {
               <h1 className="text-base font-semibold text-slate-900 leading-tight">
                 職務宿舍積點試算表
               </h1>
-              {/* 🎯 下拉選單區塊：讓使用者一鍵切換房型 */}
+              {/* 下拉選單區塊：讓使用者一鍵切換房型 */}
               <div className="flex items-center gap-1 mt-0.5 text-xs text-slate-500">
                 <span>中央研究院 · </span>
                 <select
@@ -96,7 +95,6 @@ export default function App() {
           <div className="flex items-start gap-3">
             <FileText className="text-teal-600 flex-shrink-0 mt-0.5" size={20} />
             <p className="text-sm text-slate-600 leading-relaxed">
-              {/* 🎯 動態說明文字：依據選取的 roomType 呈現對應的文字 */}
               中央研究院 {currentTaiwanYear} 年度統一借用多房間（{roomType}房型）職務宿舍積點表。
               宿舍房型需求人數：{roomType === '2' ? '二房型宿舍至少 2 人' : '三至四房型宿舍至少 3 人'}（申請人及眷口之總數）。
               填妥後系統將自動計算積點，並可匯出為 PDF 檔案。
@@ -106,7 +104,12 @@ export default function App() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2" ref={formRef}>
-            <ApplicantForm data={data} update={update} />
+            
+            {/* 🎯 核心修正：外層加上一個帶有 mb-8 的容器，強迫將配偶基本資料與下方的 A區塊完全彈開 */}
+            <div className="mb-8">
+              <ApplicantForm data={data} update={update} />
+            </div>
+
             <PointsCalculator data={data} update={update} />
 
             <div className="mt-6 bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
@@ -114,7 +117,7 @@ export default function App() {
               <div className="space-y-4">
                 <InfoBox>
                   本人、配偶於臺北市南港區、信義區、內湖區、松山區、新北市汐止區等地無自有住宅，
-                  且未曾獲政府輔助、補助購置或承購住宅，亦未曾獲公公有眷舍處理之一次補助費等。
+                  且未曾獲政府輔助、補助購置或承購住宅，亦未曾獲公有眷舍處理之一次補助費等。
                   申請人如於申請後核定發布前有調職、離職及退休、留職停薪或借調、受撤職、免職處分時，
                   同意負責主動告知服務機關撤回本申請。
                 </InfoBox>
