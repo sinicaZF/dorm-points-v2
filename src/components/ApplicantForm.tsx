@@ -18,7 +18,6 @@ export function ApplicantForm({ data, update }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* 申請人基本資料 */}
       <Section
         title="申請人基本資料"
         subtitle="請填寫申請人之個人資訊"
@@ -91,7 +90,7 @@ export function ApplicantForm({ data, update }: Props) {
         </div>
       </Section>
 
-      {/* 🎯 配偶基本資料：已改為永久固定顯示，不再受婚姻狀況連動 */}
+      {/* 🎯 配偶基本資料區塊：已改為永久固定夾在中間，不再受婚姻狀況下拉連動 */}
       <Section
         title="配偶基本資料"
         subtitle="填寫配偶資訊（若無配偶則免填）"
@@ -99,19 +98,19 @@ export function ApplicantForm({ data, update }: Props) {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TextField
-            label="配偶姓名"
+            label="姓名"
             value={data.spouse.name}
             onChange={(e) => updateSpouse('name', e.target.value)}
             placeholder="請輸入配偶姓名"
           />
           <TextField
-            label="配偶身分證字號"
+            label="身分證字號"
             value={data.spouse.idNumber}
             onChange={(e) => updateSpouse('idNumber', e.target.value)}
             placeholder="請輸入配偶身分證字號"
           />
           <TextField
-            label="配偶生日"
+            label="生日"
             type="date"
             value={data.spouse.birthday}
             onChange={(e) => updateSpouse('birthday', e.target.value)}
