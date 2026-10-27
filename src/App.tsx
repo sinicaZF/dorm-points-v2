@@ -14,6 +14,9 @@ export default function App() {
   const [isExporting, setIsExporting] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
+  // 🎯 核心修改：取得當前西元年並轉換為民國年（例如 2026 - 1911 = 115）
+  const currentTaiwanYear = useMemo(() => new Date().getFullYear() - 1911, []);
+
   const breakdown = useMemo(() => calculatePoints(data), [data]);
 
   const update = <K extends keyof FormData>(key: K, value: FormData[K]) => {
@@ -47,6 +50,7 @@ export default function App() {
               <Building2 size={22} />
             </div>
             <div>
+              {/* 🎯 動態調整：如果上方小字標題也需要，這裡也可以同步變更 */}
               <h1 className="text-base font-semibold text-slate-900 leading-tight">
                 職務宿舍積點試算表
               </h1>
@@ -78,7 +82,8 @@ export default function App() {
           <div className="flex items-start gap-3">
             <FileText className="text-teal-600 flex-shrink-0 mt-0.5" size={20} />
             <p className="text-sm text-slate-600 leading-relaxed">
-              中央研究院 113 年度統一借用多房間（3-4房型）職務宿舍積點表。
+              {/* 🎯 核心修改：將原本寫死的 113 改為 {currentTaiwanYear} 變數 */}
+              中央研究院 {currentTaiwanYear} 年度統一借用多房間（3-4房型）職務宿舍積點表。
               宿舍房型需求人數：二房型宿舍至少2人，三至四房型宿舍至少3人（申請人及眷口之總數）。
               填妥後系統將自動計算積點，並可匯出為 PDF 檔案。
             </p>
