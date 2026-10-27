@@ -61,7 +61,7 @@ export function PointsCalculator({ data, update }: Props) {
         icon={<Calculator size={20} />}
       >
         <div className="space-y-5">
-          {/* 服務年資 */}
+          {/* 服務年資區塊 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-3">服務年資</h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -96,7 +96,7 @@ export function PointsCalculator({ data, update }: Props) {
             </div>
           </div>
 
-          {/* 職級 */}
+          {/* 職級區塊 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-3">職級</h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -121,7 +121,7 @@ export function PointsCalculator({ data, update }: Props) {
             </div>
           </div>
 
-          {/* 🎯 眷口：已成功將動態增刪欄位移至職級下方 */}
+          {/* 🎯 眷口區塊：已成功搬移至 A 區塊「職級」的下方 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-2">眷口</h3>
             <InfoBox>
@@ -195,7 +195,7 @@ export function PointsCalculator({ data, update }: Props) {
         </div>
       </Section>
 
-      {/* Ｂ. 自填減項 */}
+      {/* Ｂ. 自填減項區塊 */}
       <Section
         title="Ｂ. 自填減項"
         subtitle="自有住宅與借用次數之扣點計算"
@@ -208,7 +208,7 @@ export function PointsCalculator({ data, update }: Props) {
                 label="申請人或配偶名下有自有住宅（位於指定區域）"
                 checked={data.hasSelfOwnedProperty}
                 onChange={(v) => update('hasSelfOwnedProperty', v)}
-                hint="位於台北市文山區、大安區、中正區、中山區、萬華區、大大同區、新北市深坑區、汐止區等地者，其點數減半計算"
+                hint="位於台北市文山區、大安區、中正區、中山區、萬華區、大同區、新北市深坑區、汐止區等地者，其點數減半計算"
               />
             </div>
 
