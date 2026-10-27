@@ -121,7 +121,7 @@ export function PointsCalculator({ data, update }: Props) {
             </div>
           </div>
 
-          {/* 🎯 眷口區塊：已成功移至 A 區塊「職級」的下方 */}
+          {/* 🎯 眷口區塊 */}
           <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
             <h3 className="text-sm font-semibold text-slate-700 mb-2">眷口</h3>
             <InfoBox>
@@ -194,7 +194,6 @@ export function PointsCalculator({ data, update }: Props) {
           </div>
         </div>
       </Section>
-
       {/* Ｂ. 自填減項 */}
       <Section
         title="Ｂ. 自填減項"
@@ -243,23 +242,30 @@ export function PointsCalculator({ data, update }: Props) {
                 ))}
                 <button
                   onClick={addProperty}
-className="flex items-center gap-2 rounded-lg border-2 border-dashed border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-600 transition hover:border-teal-400 hover:bg-teal-50 hover:text-teal-600"
->
+                  className="flex items-center gap-2 rounded-lg border-2 border-dashed border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-600 transition hover:border-teal-400 hover:bg-teal-50 hover:text-teal-600"
+                >
+                  <Plus size={18} />
+                  新增自有住宅
+                </button>
+              </div>
+            )}
+          </div>
 
-新增自有住宅
-
-
-)}
-借用次數
-
-曾借用一般多房間職務宿舍1次者，其點數扣除1/2計算；借用2次以上者，其點數扣除2/3計算（均自民國92年起算）。
-
-<NumberField
-label="曾借用次數"
-value={data.previousBorrowCount || ''}
-onChange={(v) => update('previousBorrowCount', v)}
-min={0}
-hint="至統一辦理借用申請發布日止"
-/>
-);
+          <div className="rounded-xl bg-slate-50 border border-slate-200 p-5">
+            <h3 className="text-sm font-semibold text-slate-700 mb-3">借用次數</h3>
+            <p className="text-xs text-slate-500 mb-4">
+              曾借用一般多房間職務宿舍1次者，其點數扣除1/2計算；借用2次以上者，其點數扣除2/3計算（均自民國92年起算）。
+            </p>
+            <NumberField
+              label="曾借用次數"
+              value={data.previousBorrowCount || ''}
+              onChange={(v) => update('previousBorrowCount', v)}
+              min={0}
+              hint="至統一辦理借用申請發布日止"
+            />
+          </div>
+        </div>
+      </Section>
+    </div>
+  );
 }
