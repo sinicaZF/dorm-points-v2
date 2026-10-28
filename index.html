@@ -2,12 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- 🎯 1. 網頁標籤小圖示：改用乾淨的「大樓 🏢」Emoji，不再殘留 Vite 或 Bolt 標誌 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏢</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-default>Vite + React + TS</title>
-    <meta property="og:image" content="https://bolt.new/static/og_default.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
+    
+    <!-- 🎯 2. 修改瀏覽器與 LINE 顯示的正式繁體中文標題 -->
+    <title>中央研究院 職務宿舍申請積點試算表</title>
+    
+    <!-- 🎯 3. 分享優化：新增 LINE 社群分享的專屬繁體中文名稱與說明描述 -->
+    <meta property="og:title" content="中央研究院 職務宿舍申請積點試算表" />
+    <meta property="og:description" content="提供中研院同仁線上快速試算職務宿舍申請積點，支援 2 房型與 3-4 房型切換，並可直接導出 A4 官方規格 PDF 檔案。" />
+    <meta property="og:type" content="website" />
+
+    <!-- 🎯 4. 徹底解決：拔除原本指向 bolt.new 的預覽藍色縮圖，改用乾淨的透明空白圖 -->
+    <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
   </head>
   <body>
     <div id="root"></div>
